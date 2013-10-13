@@ -10,7 +10,7 @@ import filecomparator.helper.FileHelper;
  *
  * @author panagiotis
  */
-public class DefaultFinalizerStrategy extends AbstractFinalizerStrategy{
+public class DefaultFinalizerStrategyImpl extends AbstractFinalizerStrategy{
 
     @Override
     public void finalize(FileHelper fileHelper) {

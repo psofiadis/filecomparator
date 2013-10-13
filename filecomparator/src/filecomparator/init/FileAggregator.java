@@ -14,6 +14,7 @@ public interface FileAggregator {
     public void process(String[] args)throws Exception;;
     public FileHelper validate(String[] args)throws Exception;
     public void sort(Sort sortStrategy) throws IOException;
+    public void prepare();
     public void compare(Compare compareStrategy)throws IOException;
     public void finalize(Finalizer finalizeStrategy) throws Exception;
 }

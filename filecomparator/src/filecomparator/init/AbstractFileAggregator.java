@@ -36,12 +36,15 @@ public abstract class AbstractFileAggregator implements FileAggregator{
 
             System.out.println("Sorting... ");
             sort( this.sortStrategy);
-
+            
+            System.out.println("Preparing...");
+            prepare();
+            
             System.out.println("Comparing... ");
             compare(this.compareStrategy);
 
        }catch(Exception ex){
-            System.out.println(ex.getStackTrace().toString());
+            System.out.println(ex.toString());
        }finally{
             System.out.println("Finalizing... ");
             finalize(this.finalizeStrategory);
@@ -62,6 +65,11 @@ public abstract class AbstractFileAggregator implements FileAggregator{
 
     @Override
     public abstract void compare(Compare compareStrategy) throws IOException;
+    
+    @Override
+    public final void prepare(){
+       fileHelper.setPrepareFilesForCompare(); 
+    }
 
     @Override
     public abstract void finalize(Finalizer finalizeStrategy);

@@ -3,7 +3,7 @@ package filecomparator.init;
 import java.io.IOException;
 import strategy.compare.Compare;
 import strategy.compare.DefaultCompareStrategyImpl;
-import strategy.finalize.DefaultFinalizerStrategy;
+import strategy.finalize.DefaultFinalizerStrategyImpl;
 import strategy.finalize.Finalizer;
 import strategy.sort.DefaultSortStrategyImpl;
 import strategy.sort.Sort;
@@ -17,7 +17,7 @@ public class DefaultFileAggregatorImpl extends AbstractFileAggregator{
     public DefaultFileAggregatorImpl(){
         super(new DefaultSortStrategyImpl(),
               new DefaultCompareStrategyImpl(),
-              new DefaultFinalizerStrategy()
+              new DefaultFinalizerStrategyImpl()
                 );
     }
     
@@ -29,7 +29,7 @@ public class DefaultFileAggregatorImpl extends AbstractFileAggregator{
 
     @Override
     public void compare(Compare compareStrategy) throws IOException {
-        compareStrategy.compare(this.getFileHelper());
+       compareStrategy.compare(this.getFileHelper());
     }
 
     @Override

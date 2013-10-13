@@ -16,12 +16,18 @@ public class DefaultSortStrategyImpl extends AbstractSortStrategy{
     
     @Override
     public void sort(FileHelper fileHelper) throws IOException{
-        FileHolder sorted = fileHelper.getListOfFiles().get(fileHelper.getLargerFileIndex());
+        
         Comparator<String> comparator = new Comparator<String>() {
             @Override
             public int compare(String r1, String r2){
                 return r1.compareTo(r2);}};
-        List<File> l = ExternalSort.sortInBatch(sorted, comparator) ;
-        ExternalSort.mergeSortedFiles(l, sorted.getSortedFile(), comparator);
+        
+        FileHolder sortedLargerFile = fileHelper.getListOfFiles().get(0);
+        List<File> l1 = ExternalSort.sortInBatch(sortedLargerFile, comparator) ;
+        ExternalSort.mergeSortedFiles(l1, sortedLargerFile.getSortedFile(), comparator);
+        
+        FileHolder sortedSmallerFile = fileHelper.getListOfFiles().get(1);
+        List<File> l2 = ExternalSort.sortInBatch(sortedSmallerFile, comparator) ;
+        ExternalSort.mergeSortedFiles(l2, sortedSmallerFile.getSortedFile(), comparator);
     }
 }
