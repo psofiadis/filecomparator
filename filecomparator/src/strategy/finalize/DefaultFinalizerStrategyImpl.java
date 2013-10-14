@@ -14,7 +14,7 @@ public class DefaultFinalizerStrategyImpl extends AbstractFinalizerStrategy{
 
     @Override
     public void finalize(FileHelper fileHelper) {
-       fileHelper.clear();
+       if(fileHelper != null) fileHelper.clear();
     }
     
 }

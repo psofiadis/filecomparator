@@ -27,6 +27,7 @@ public class FileHolder extends File{
             throw new IllegalArgumentException("Source file does not exist " + this.getName());
         if(this.sortedFile.exists())
             throw new RuntimeException("File is already being sorted " + this.getName());
+        if(this.exists() && this.type.equals(OUTPUT)) this.delete();
     }
     
     public String getType() {

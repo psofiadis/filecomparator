@@ -15,8 +15,6 @@ public class FileHelper {
     
     private FileHolder outputFile;
     private List<FileHolder> listOfFiles = null;
-    private int largerFileIndex = 0;
-    private int smallerFileIndex = 0;
     
     private File smallerSortedFile = null;
     private File largerSortedFile = null;

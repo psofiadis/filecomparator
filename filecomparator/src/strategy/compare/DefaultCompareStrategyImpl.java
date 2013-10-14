@@ -37,33 +37,30 @@ public class DefaultCompareStrategyImpl extends AbstractCompareStrategy{
         //TODO test split files and indexing
         
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(smallerFile), "UTF8"));
-        try{
-            String line;
-            while ((line = br.readLine()) != null) {
-               if(line.trim().isEmpty()) continue;
-               BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(largerFile), "UTF8"));
-               String line1;
-               while ((line1 = br1.readLine()) != null) {
-                  int comparisonResult = comparator.compare(line,line1);
-                  if( comparisonResult == 0){
-                      fbw.append(line);
-                      fbw.newLine();
-                  }else if( comparisonResult > 0){
-                      continue;
-                  }else{
-                      br1.close();
-                      break;
-                  }
-               }
-            }
-        }catch(Exception ex){
-            fbw.close();
-            br.close();
-            
-        }finally{
-            fbw.close();
-            br.close();
-            
+        String line;
+        while ((line = br.readLine()) != null) {
+           if(line.trim().isEmpty()) continue;
+           BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(largerFile), "UTF8"));
+           String line1;
+           while ((line1 = br1.readLine()) != null) {
+              int comparisonResult = comparator.compare(line,line1);
+              if( comparisonResult == 0){
+                  fbw.append(line);
+                  fbw.newLine();
+                  br1.close();
+                  break;
+              }else if( comparisonResult > 0){
+                  continue;
+              }else{
+                  br1.close();
+                  break;
+              }
+              //if(br1.)br1.close();
+           }
         }
+       
+        fbw.close();
+        br.close();
+            
     }
 }
